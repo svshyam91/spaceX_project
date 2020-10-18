@@ -10,4 +10,8 @@
     - Django
     
 > ## Hosting Site
-    - [pythonanywhere](https://www.pythonanywhere.com/)
+    - pythonanywhere - https://www.pythonanywhere.com/
+    
+> ## CDNs Used:
+    - jQuery (only used for AJAX Request)
+    - Google Font (for text font)
