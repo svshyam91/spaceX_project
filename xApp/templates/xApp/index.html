@@ -1,0 +1,198 @@
+<html>
+    <head>
+        <title>SpaceX</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+        <style>
+            *{
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-size: 16px;
+            }
+            body {
+                background-color: #F8F8F8;
+            }
+            .header, footer {
+                background-color: #F0F0F0;
+                text-align: center;
+                color: #000000;
+                padding: 15px;
+            }
+            .menu ul{
+                list-style-type: none;
+                margin: 0%;
+                padding: 0%;
+            }
+            .menu li {
+                padding: 8px;
+                margin-bottom: 7px;
+                color: #ffffff;
+
+                background-color: #33b5e5;
+            }
+            .border {
+                border: 1px solid black;
+            }
+            .menu li:hover {
+                background-color: #0099cc;
+            }
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .col-1 {width: 8.33%;}
+            .col-2 {width: 16.66%;}
+            .col-3 {width: 25%;}
+            .col-4 {width: 33.33%;}
+            .col-5 {width: 41.66%;}
+            .col-6 {width: 50%;}
+            .col-7 {width: 58.33%;}
+            .col-8 {width: 66.66%;}
+            .col-9 {width: 75%;}
+            .col-10 {width: 83.33%;}
+            .col-11 {width: 91.66%;}
+            .col-12 {width: 100%;}
+            /* .column {
+                width: 25%;
+                padding: 20px;
+            } */
+            @media screen and (min-width: 700px) and (max-width: 1024px) {
+                .col-t-1 {width: 8.33%;}
+                .col-t-2 {width: 16.66%;}
+                .col-t-3 {width: 25%;}
+                .col-t-4 {width: 33.33%;}
+                .col-t-5 {width: 41.66%;}
+                .col-t-6 {width: 50%;}
+                .col-t-7 {width: 58.33%;}
+                .col-t-8 {width: 66.66%;}
+                .col-t-9 {width: 75%;}
+                .col-t-10 {width: 83.33%;}
+                .col-t-11 {width: 91.66%;}
+                .col-t-12 {width: 100%;}
+            }
+            @media screen and (max-width: 700px) {
+                .col-s-1 {width: 8.33%;}
+                .col-s-2 {width: 16.66%;}
+                .col-s-3 {width: 25%;}
+                .col-s-4 {width: 33.33%;}
+                .col-s-5 {width: 41.66%;}
+                .col-s-6 {width: 50%;}
+                .col-s-7 {width: 58.33%;}
+                .col-s-8 {width: 66.66%;}
+                .col-s-9 {width: 75%;}
+                .col-s-10 {width: 83.33%;}
+                .col-s-11 {width: 91.66%;}
+                .col-s-12 {width: 100%;}
+            }
+
+            /* Styling inside image */
+            .box {
+                /* border: 1px solid #cccccc; */
+                padding: 10px;
+            }
+            .inner-box {
+                background-color: #ffffff;
+                padding: 15px;
+            }
+            .info {
+                margin: 10px 0px;
+            }
+            .w-image {
+                /* border: 1px solid red; */
+                text-align: center;
+                background-color: #F0F0F0;
+            }
+            .image-caption {
+                color: blue;
+                font-weight: 700;
+            }
+            .heading {
+                font-weight: 700;
+            }
+
+            /* Styling side bar */
+            .year-wrapper {
+                background-color: #ffffff;
+                padding: 10px;
+                margin: 10px;
+            }
+            table {
+                margin: auto;
+                padding: 10px;
+            }
+            .year-btn {
+                padding: 4px 12px;
+                width: 100%;
+                background-color: #99ff99;
+                color: #000000;
+                border-radius: 3px;
+                border: 1px solid #66ff66;
+            }
+            .year-head {
+                text-align: center;
+                /* text-decoration: underline; */
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h2>Space X Launch Programs</h2>
+        </div>
+        <div class="row">
+            <div class="col-3 col-t-4 col-s-12 border">
+                
+                <div class="year-wrapper">
+                    <h3>Filters</h3>
+                    <div class="year-head">Launch Year</div><hr style="width: 70%; margin: auto;" />
+                    <table>
+                        <tr>
+                            <td><button class="year-btn">2006</button></td>
+                            <td><button class="year-btn">2007</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="year-btn">2008</button></td>
+                            <td><button class="year-btn">2009</button></td>
+                        </tr>
+                    </table>    
+                </div>
+
+            </div>
+            <div class="col-9 col-t-8 col-s-12 border">
+                {% if all_data %}
+                <div class="row">
+                    <!-- <h1>The Country</h1> -->
+                    {% for data in all_data %}
+                    <div class="box col-3 col-t-6 col-s-12 column">
+                        <div class="inner-box">
+                            <div class="w-image">
+                                <img src="{{data.image}}" class="image" width="100px" height="auto" alt="{{data.mission_name}}">
+                            </div>
+                            <div class="info">
+                                <p class="image-caption">{{data.mission_name}}&nbsp;#{{data.flight_number}}</p><br />
+                                <p>
+                                    <span class="heading">Mission Ids:</span>
+                                        {% for id in data.mission_ids %}
+                                            <span>{{id}}</span>
+                                        {% endfor %}
+                                </p>
+                                <p>
+                                    <span class="heading">Launch Year:</span>&nbsp;<span>{{data.launch_year}}</span>
+                                </p>
+                                <p><span class="heading">Successful Launch:</span><span>{{data.launch_success}}</span></p>
+                                <p><span class="heading">Successful Landing:</span>&nbsp;<span>{{data.successful_landing}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <footer>
+            <p>Developed By: Shyam Kumar</p>
+        </footer>
+    </body>
+</html>
