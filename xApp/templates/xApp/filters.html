@@ -1,0 +1,28 @@
+{% if all_data %}
+<div class="row">
+    <!-- <h1>The Country</h1> -->
+    {% for data in all_data %}
+    <div class="box col-3 col-t-6 col-s-12 column">
+        <div class="inner-box">
+            <div class="w-image">
+                <img src="{{data.image}}" class="image" width="100px" height="auto" alt="{{data.mission_name}}">
+            </div>
+            <div class="info">
+                <p class="image-caption">{{data.mission_name}}&nbsp;#{{data.flight_number}}</p><br />
+                <p>
+                    <span class="heading">Mission Ids:</span>
+                    {% for id in data.mission_ids %}
+                        <span>{{id}}</span>
+                    {% endfor %}
+                </p>
+                <p><span class="heading">Launch Year:</span>&nbsp;<span>{{data.launch_year}}</span></p>
+                <p><span class="heading">Successful Launch:</span><span>{{data.launch_success}}</span></p>
+                <p><span class="heading">Successful Landing:</span>&nbsp;<span>{{data.land_success}}</span></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div style="margin: 20px">No Data Available</div>
+</div>
+{% endif %}
